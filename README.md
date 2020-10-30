@@ -34,7 +34,17 @@ If you're running this in a Laravel project, you probably want to run it like th
 ded .env.example .env
 ```
 
-The above example will show you any differing environment variable names between `.env.example` and `.env`. Useful if somebody has added a variable to `.env.example` and not told the rest of their team 🙂
+It will give an output similar to the below:
+
+```
+╔═════════════════════╤══════╗
+║ .env.example        │ .env ║
+╟─────────────────────┼──────╢
+║ GITHUB_API_ENDPOINT │      ║
+╚═════════════════════╧══════╝
+```
+
+In this instance, there is a new `GITHUB_API_ENDPOINT` environment variable that exists in `.env.example` but not in `.env`. Somebody on our team added it and forgot to tell us 🙂
 
 # License
 
