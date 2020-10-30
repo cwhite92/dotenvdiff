@@ -35,3 +35,7 @@ ded .env.example .env
 ```
 
 The above example will show you any differing environment variable names between `.env.example` and `.env`. Useful if somebody has added a variable to `.env.example` and not told the rest of their team 🙂
+
+# License
+
+`cwhite92/dotenvdiff` is licensed under the MIT License (MIT). Please see the [license file](https://github.com/cwhite92/dotenvdiff/blob/main/LICENSE.md) for more information.
