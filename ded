@@ -27,6 +27,11 @@ $secondEnvPathInfo = pathinfo($secondEnvFile);
 $diff = new Diff;
 $diffResult = $diff->diff(file_get_contents($firstEnvFile), file_get_contents($secondEnvFile));
 
+if ($diffResult->envsAreIdentical()) {
+    echo "\033[32mEnvironment keys are identical!\n";
+        return;
+}
+
 $table = new CliTable;
 $table->setTableColor('blue');
 $table->setHeaderColor('cyan');

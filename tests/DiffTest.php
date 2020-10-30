@@ -76,4 +76,38 @@ ENV;
         $this->assertEmpty($result->onlyInFirstEnv());
         $this->assertEmpty($result->onlyInSecondEnv());
     }
+
+    /** @test */
+    public function it_knows_when_two_envs_are_identical()
+    {
+        $firstEnv = <<<ENV
+FOO=BAR
+ENV;
+
+        $secondEnv = <<<ENV
+FOO=BAR
+ENV;
+
+        $diff = new Diff;
+        $result = $diff->diff($firstEnv, $secondEnv);
+
+        $this->assertTrue($result->envsAreIdentical());
+    }
+
+    /** @test */
+    public function it_knows_when_two_envs_are_not_identical()
+    {
+        $firstEnv = <<<ENV
+FOO=BAR
+ENV;
+
+        $secondEnv = <<<ENV
+BIN=BAZ
+ENV;
+
+        $diff = new Diff;
+        $result = $diff->diff($firstEnv, $secondEnv);
+
+        $this->assertFalse($result->envsAreIdentical());
+    }
 }

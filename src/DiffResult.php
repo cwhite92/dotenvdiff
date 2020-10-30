@@ -15,6 +15,11 @@ class DiffResult
         $this->onlyInSecondEnv = $onlyInSecondEnv;
     }
 
+    public function envsAreIdentical(): bool
+    {
+        return $this->onlyInFirstEnv === $this->onlyInSecondEnv;
+    }
+
     public function onlyInFirstEnv(): array
     {
         return $this->onlyInFirstEnv;
