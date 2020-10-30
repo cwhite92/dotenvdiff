@@ -8,8 +8,8 @@ require __DIR__.'/../../autoload.php';
 use jc21\CliTable;
 use ChrisWhite\DotEnvDiff\Diff;
 
-$firstEnvFile = $argv[1];
-$secondEnvFile = $argv[2];
+$firstEnvFile = $argv[1] ?? null;
+$secondEnvFile = $argv[2] ?? null;
 
 if ($firstEnvFile === null || $secondEnvFile === null) {
     echo "\033[31mUsage: ded /path/to/first/.env /path/to/second/.env\n";
