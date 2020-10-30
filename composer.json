@@ -1,7 +1,6 @@
 {
   "name": "cwhite92/dotenvdiff",
   "description": "Easily see differences between two .env files",
-  "type": "todo",
   "keywords": [
     "dotenv",
     "env",
