@@ -1,0 +1,51 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__.'/vendor/autoload.php';
+
+use jc21\CliTable;
+use ChrisWhite\DotEnvDiff\Diff;
+
+$firstEnvFile = $argv[1];
+$secondEnvFile = $argv[2];
+
+if (!file_exists($argv[1])) {
+    echo "\033[31mFile {$argv[1]} does not exist.\n";
+    return;
+}
+
+if (!file_exists($argv[2])) {
+    echo "\033[31mFile {$argv[2]} does not exist.\n";
+    return;
+}
+
+$firstEnvPathInfo = pathinfo($firstEnvFile);
+$secondEnvPathInfo = pathinfo($secondEnvFile);
+
+$diff = new Diff;
+$diffResult = $diff->diff(file_get_contents($firstEnvFile), file_get_contents($secondEnvFile));
+
+$table = new CliTable;
+$table->setTableColor('blue');
+$table->setHeaderColor('cyan');
+$table->addField($firstEnvPathInfo['basename'], md5($firstEnvFile));
+$table->addField($secondEnvPathInfo['basename'], md5($secondEnvFile));
+
+$tableData = [];
+foreach ($diffResult->onlyInFirstEnv() as $result) {
+    $tableData[] = [
+        md5($firstEnvFile) => $result,
+        md5($secondEnvFile) => ''
+    ];
+}
+foreach ($diffResult->onlyInSecondEnv() as $result) {
+    $tableData[] = [
+        md5($firstEnvFile) => '',
+        md5($secondEnvFile) => $result
+    ];
+}
+
+$table->injectData($tableData);
+$table->display();

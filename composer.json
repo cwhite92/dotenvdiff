@@ -1,0 +1,44 @@
+{
+  "name": "cwhite92/dotenvdiff",
+  "description": "Easily see differences between two .env files",
+  "type": "todo",
+  "keywords": [
+    "dotenv",
+    "env",
+    "diff"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Chris White",
+      "email": "chris@cwhite.me",
+      "homepage": "https://cwhite.me",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/cwhite92/dotenvdiff/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "ChrisWhite\\DotEnvDiff\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ChrisWhite\\DotEnvDiff\\Test\\": "tests"
+    }
+  },
+  "bin": [
+    "ded"
+  ],
+  "prefer-stable": true,
+  "require": {
+    "php": ">7.3",
+    "vlucas/phpdotenv": "^5.2",
+    "jc21/clitable": "^1.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  }
+}
